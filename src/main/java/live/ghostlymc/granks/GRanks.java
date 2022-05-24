@@ -27,9 +27,7 @@ import dev.waterdog.waterdogpe.logger.Logger;
 import dev.waterdog.waterdogpe.plugin.Plugin;
 import live.ghostlymc.granks.commands.RanksCommand;
 import live.ghostlymc.granks.config.ConfigManager;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import org.jetbrains.annotations.NotNull;
 
 public class GRanks extends Plugin {
 
@@ -51,7 +49,8 @@ public class GRanks extends Plugin {
 
     @Override
     public void onEnable() {
-        this.getProxy().getCommandMap().registerCommand(new RanksCommand());
+        registerCommands(new Command[]{new RanksCommand()});
+
         logger.info(prefix + "§aG-Ranks has been loaded!");
     }
 
@@ -59,7 +58,11 @@ public class GRanks extends Plugin {
         return ConfigManager.getInstance();
     }
 
-    public void registerCommands(Array commands) {
-        //TODO: HMM
+
+    public void registerCommands(Command[] commands) {
+        for (Command command :
+                commands) {
+            getProxy().getCommandMap().registerCommand(command);
+        }
     }
 }
