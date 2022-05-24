@@ -20,16 +20,7 @@
  * Copyright © 2022 GhostlyMC Network (omar@ghostlymc.live) - All Rights Reserved.
  */
 
-package live.ghostlymc.granks
+package live.ghostlymc.granks.handler;
 
-import dev.waterdog.waterdogpe.plugin.Plugin
-
-class GRanks: Plugin() {
-    override fun onEnable() {
-        println("GRanks has been enabled!")
-    }
-
-    override fun onDisable() {
-        println("GRanks has been disabled!")
-    }
+public class PlayerHandler {
 }
