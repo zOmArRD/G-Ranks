@@ -20,46 +20,22 @@
  * Copyright © 2022 GhostlyMC Network (omar@ghostlymc.live) - All Rights Reserved.
  */
 
-package live.ghostlymc.granks;
+package live.ghostlymc.granks.commands
 
-import dev.waterdog.waterdogpe.command.Command;
-import dev.waterdog.waterdogpe.logger.Logger;
-import dev.waterdog.waterdogpe.plugin.Plugin;
-import live.ghostlymc.granks.commands.RanksCommand;
-import live.ghostlymc.granks.config.ConfigManager;
+import dev.waterdog.waterdogpe.command.Command
+import dev.waterdog.waterdogpe.command.CommandSender
+import dev.waterdog.waterdogpe.command.CommandSettings
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+class RanksCommand: Command("ranks", CommandSettings.builder()
+    .setUsageMessage("ranks help")
+    .setPermission("granks.ranks.cmd")
+    .setDescription("Manage the ranks of each player")
+    .setAliases(arrayOf("rank"))
+    .build()) {
 
-public class GRanks extends Plugin {
+    override fun onExecute(sender: CommandSender?, alias: String?, args: Array<out String>?): Boolean {
+        sender?.sendMessage("work")
 
-    private static GRanks instance;
-    public static Logger logger;
-    public static String prefix;
-
-    public static GRanks getInstance() {
-        return instance;
-    }
-
-    @Override
-    public void onStartup() {
-        instance = this;
-        logger = getLogger();
-
-        new ConfigManager();
-    }
-
-    @Override
-    public void onEnable() {
-        this.getProxy().getCommandMap().registerCommand(new RanksCommand());
-        logger.info(prefix + "§aG-Ranks has been loaded!");
-    }
-
-    public ConfigManager getConfigManager() {
-        return ConfigManager.getInstance();
-    }
-
-    public void registerCommands(Array commands) {
-        //TODO: HMM
+        return true
     }
 }
