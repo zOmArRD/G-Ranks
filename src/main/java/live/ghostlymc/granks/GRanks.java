@@ -48,4 +48,8 @@ public class GRanks extends Plugin {
     public void onEnable() {
         logger.info(prefix + "§aG-Ranks has been loaded!");
     }
+
+    public ConfigManager getConfigManager() {
+        return ConfigManager.getInstance();
+    }
 }

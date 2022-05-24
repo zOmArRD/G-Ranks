@@ -40,7 +40,7 @@ public class ConfigManager {
     }
 
     public void setup() {
-        this.plugin().saveResource("config.yml");
+        saveResource("config.yml");
 
         if (this.plugin().getConfig().getInt("config.version") != 1) {
             GRanks.logger.warning("[GRanks] Config file is outdated, updating...");
@@ -61,22 +61,26 @@ public class ConfigManager {
     }
 
     public JsonConfig getJsonFile(String filePath, String type) {
-        File file = new File(this.plugin().getDataFolder() + filePath);
+        File file = new File(getDataFolder() + filePath);
 
         return new JsonConfig(file);
     }
 
     public YamlConfig getYamlFile(String filePath, String type) {
-        File file = new File(this.plugin().getDataFolder() + filePath);
+        File file = new File(getDataFolder() + filePath);
 
         return new YamlConfig(file);
     }
 
-    public boolean saveResource(String file) {
-        return this.plugin().saveResource(file, false);
+    public void saveResource(String file) {
+        this.plugin().saveResource(file, false);
     }
 
-    public boolean saveResource(String file, boolean replace) {
-        return this.plugin().saveResource(file, replace);
+    public void saveResource(String file, boolean replace) {
+        this.plugin().saveResource(file, replace);
+    }
+
+    public File getDataFolder() {
+        return this.plugin().getDataFolder();
     }
 }
